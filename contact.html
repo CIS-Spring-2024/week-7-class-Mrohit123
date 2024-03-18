@@ -67,15 +67,52 @@
     <form method= "post">
         <br>
     Name: <br><input type="text" id="fname" required size = "60"  style="height: 30px;"><br><br>
-    Phone: <br><input type="text" id="phone" required size = "60" style="height: 30px;"><br><br>
-    Email: <br><input type="text" id="email" required size = "60" style="height: 30px;"><br><br>
-    Password: <br><input type="text" id="pswd" required size = "60" style="height: 30px;"><br><br>
+    Phone: <br><input type="tel" id="phone" required size = "60" style="height: 30px;"><br><br>
+    Email: <br><input type="email" id="email" required size = "60" style="height: 30px;"><br><br>
+    Password: <br><input type="password" id="pswd" required size = "60" style="height: 30px;"><br><br>
     Date of Birth: <br><input type="date" id="dob" required size = "60" required style="height: 30px; width:435px"><br><br>
 
     Preffered Method: <br><input type="radio" id="email"> Email <input type="radio" id="phone"> Phone 
         <br><br>
-    <button id="button"> Submit</button>
+    <button id="submit" type="submit"> Submit</button>
 
     </form>
+    <script>
+        let nameTag = document.getElementById('fname');
+            nameTag.addEventListener('input', function(){
+                console.log('Name input changed to' +this.value);
+            });
+
+
+        let inputs = document.getElementsByTagName('input');
+        for(let input of inputs){
+            input.addEventListener('focus', function(){
+                this.style.backgroundColor = 'Yellow';
+            });
+            input.addEventListener('blur', function(){
+                this.style.backgroundColor = '';
+            });
+        
+        }
+        let passTag = document.getElementById('pswd');
+        passTag.addEventListener('blur', function(){
+            let passwordval = this.value;
+            if(passwordval.length < 8){
+                alert('password should not be less than 8 characters')
+            }
+        });
+        
+        let radioButtons = document.getElementsByClassName('radio-group');
+        for (let radioButton of radioButtons) {
+            radioButton.addEventListener('change', function(e){
+                alert('A new contact method was selected: ' + e.target.value)
+            });
+        }
+
+        document.querySelector('button[type = "submit"]').addEventListener('click', function(e){
+            e.preventDefault();
+            alert('submit the form for processing now');
+        });
+    </script>
     </body>
 </html>
